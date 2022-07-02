@@ -2,7 +2,11 @@ import pygame
 from globalFunctions import click
 
 def pauseGame(screen: any, mouse: any, font, screen_i):
-    if 430<= mouse[0] <= 985 and 664 <= mouse[1] <= 768:
+    x_init = 430
+    x_final = 985
+    y_init = 664
+    y_final = 768
+    if (click(mouse, screen_i, x_init, x_final, y_init, y_final)):
         pauseScreen(screen, mouse , font, screen_i)
 
 #################################################################
