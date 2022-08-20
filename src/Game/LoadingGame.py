@@ -17,10 +17,10 @@ def loading_game(screen: any, screen_i):
       image_path = "src\Game\Images\Loading\Loading_1.png"
     else:
       image_path = "src\Game\Images\Loading\Loading_GO.png"
-      background_image = pygame.image.load(image_path).convert()
-      background_image = pygame.transform.scale(background_image, (screen_i[0][0], screen_i[0][1]))
-      screen.blit(background_image,[0,0])
-      pygame.display.flip()
-      pygame.time.delay(10)
-      i = i+1
+    background_image = pygame.image.load(image_path).convert()
+    background_image = pygame.transform.scale(background_image, (screen_i[0][0], screen_i[0][1]))
+    screen.blit(background_image,[0,0])
+    pygame.display.flip()
+    pygame.time.delay(10)
+    i = i+1
 ###

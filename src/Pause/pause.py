@@ -7,18 +7,19 @@ def pauseMenu(screen: any, mouse: any, font, screen_i):
   y_init = 664
   y_final = 768
   if (click(mouse, screen_i, x_init, x_final, y_init, y_final)):
-    pauseScreen(screen, mouse , font, screen_i)
+    pauseScreen(screen , font, screen_i)
 
 #################################################################
 
-def pauseScreen(screen: any, mouse: any, font: any, screen_i):
+def pauseScreen(screen: any, font: any, screen_i):
   stopWhile = True
   while(stopWhile):
     for event in pygame.event.get():
       if event.type == pygame.QUIT:
         pygame.quit()
       if event.type == pygame.KEYDOWN:
-        stopWhile = False
+        if event.key == pygame.K_ESCAPE:
+          stopWhile = False
       if event.type == pygame.MOUSEBUTTONDOWN:
         mouse = event.pos
         tutorialButton(mouse, screen_i)

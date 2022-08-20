@@ -1,7 +1,7 @@
 import pygame
 
 from Game.MainGame import init_game
-from Pause.pause import pauseMenu
+from Pause.pause import pauseMenu, pauseScreen
 from Menu.menu import menu_init, exit_game
 
 #Initialize pygame
@@ -25,13 +25,15 @@ while True:
   for event in pygame.event.get():
     if event.type == pygame.QUIT:
       pygame.quit()
+    if event.type == pygame.KEYDOWN:
+        if event.key == pygame.K_ESCAPE:
+          pauseScreen(screen, font, screen_i)
     if event.type == pygame.MOUSEBUTTONDOWN:
       #get mouse click
       # x_mouse, y_mouse = event.pos[0], event.pos[1]
       mouse = event.pos
-      print(mouse)
       exit_game(mouse, screen_i)
-      init_game(screen, mouse, screen_i)
+      init_game(screen, mouse, font, screen_i)
       pauseMenu(screen, mouse, font, screen_i)
 
     menu_init(screen, screen_i)
