@@ -10,4 +10,4 @@ def init_game(screen, mouse, font, screen_i):
   y_final = 617
   if (click(mouse, screen_i, x_init, x_final, y_init, y_final)):
     loading_game(screen, screen_i)
-    shotGame(screen, mouse, font, screen_i)
+    shotGame(screen, font, screen_i)

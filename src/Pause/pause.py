@@ -13,6 +13,7 @@ def pauseMenu(screen: any, mouse: any, font, screen_i):
 
 def pauseScreen(screen: any, font: any, screen_i):
   stopWhile = True
+  pygame.mouse.set_visible(True)
   while(stopWhile):
     for event in pygame.event.get():
       if event.type == pygame.QUIT:

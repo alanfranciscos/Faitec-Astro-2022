@@ -29,8 +29,6 @@ while True:
         if event.key == pygame.K_ESCAPE:
           pauseScreen(screen, font, screen_i)
     if event.type == pygame.MOUSEBUTTONDOWN:
-      #get mouse click
-      # x_mouse, y_mouse = event.pos[0], event.pos[1]
       mouse = event.pos
       exit_game(mouse, screen_i)
       init_game(screen, mouse, font, screen_i)
