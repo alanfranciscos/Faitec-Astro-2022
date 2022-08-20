@@ -1,7 +1,7 @@
 import pygame
 
-from Game.game import init_game
-from Pause.pause import pauseGame
+from Game.MainGame import init_game
+from Pause.pause import pauseMenu
 from Menu.menu import menu_init, exit_game
 
 #Initialize pygame
@@ -21,17 +21,17 @@ size = (window_width, window_height)
 screen = pygame.display.set_mode((size))
 
 while True:
-    #Get events in pygame
-    for event in pygame.event.get():
-                if event.type == pygame.QUIT:
-                        pygame.quit()
-                if event.type == pygame.MOUSEBUTTONDOWN:
-                        #get mouse click
-                        # x_mouse, y_mouse = event.pos[0], event.pos[1]
-                        mouse = event.pos
-                        print(mouse)
-                        exit_game(mouse, screen_i)
-                        init_game(screen, mouse, screen_i)
-                        pauseGame(screen, mouse, font, screen_i)
+  #Get events in pygame
+  for event in pygame.event.get():
+    if event.type == pygame.QUIT:
+      pygame.quit()
+    if event.type == pygame.MOUSEBUTTONDOWN:
+      #get mouse click
+      # x_mouse, y_mouse = event.pos[0], event.pos[1]
+      mouse = event.pos
+      print(mouse)
+      exit_game(mouse, screen_i)
+      init_game(screen, mouse, screen_i)
+      pauseMenu(screen, mouse, font, screen_i)
 
     menu_init(screen, screen_i)
