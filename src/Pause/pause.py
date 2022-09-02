@@ -2,11 +2,11 @@ import pygame
 from globalFunctions import click, text
 
 def pauseMenu(screen: any, mouse: any, font, screen_i):
-  x_init = 430
-  x_final = 985
-  y_init = 664
-  y_final = 768
-  if (click(mouse, screen_i, x_init, x_final, y_init, y_final)):
+  x_init = 563
+  x_final = 729
+  y_init = 652
+  y_final = 116
+  if (click(mouse, x_init, x_final, y_init, y_final)):
     pauseScreen(screen , font, screen_i)
 
 #################################################################
@@ -23,10 +23,9 @@ def pauseScreen(screen: any, font: any, screen_i):
           stopWhile = False
       if event.type == pygame.MOUSEBUTTONDOWN:
         mouse = event.pos
-        tutorialButton(mouse, screen_i)
-        musicButton (mouse, screen_i)
-        Creditos(mouse, screen_i)
-        stopWhile = returnButton (mouse, screen_i)
+        tutorialButton(mouse)
+        musicButton (mouse)
+        stopWhile = returnButton (mouse)
     image_path = "src\Pause\Images\Background.png"
     background_image = pygame.image.load(image_path).convert()
     background_image = pygame.transform.scale(background_image, (screen_i[0][0], screen_i[0][1]))
@@ -38,38 +37,30 @@ def pauseScreen(screen: any, font: any, screen_i):
 
 #################################################################
 
-def tutorialButton(mouse, screen_i):
-  x_init = 439
-  x_final = 1010
-  y_init = 217
-  y_final = 335
-  if (click(mouse, screen_i, x_init, x_final, y_init, y_final)):
+def tutorialButton(mouse):
+  x_init = 595
+  x_final = 729
+  y_init = 676
+  y_final = 116
+  if (click(mouse, x_init, x_final, y_init, y_final)):
     print("tutorial")
 
-def musicButton(mouse, screen_i):
-  x_init = 439
-  x_final = 1010
-  y_init = 360
-  y_final = 475
-  if (click(mouse, screen_i, x_init, x_final, y_init, y_final)):
+def musicButton(mouse):
+  x_init = 595
+  x_final = 729
+  y_init = 467
+  y_final = 116
+  if (click(mouse, x_init, x_final, y_init, y_final)):
     print("music")
 
 
-def returnButton(mouse, screen_i):
-  x_init = 1062
-  x_final = 1397
-  y_init = 36
-  y_final = 100
-  if (click(mouse, screen_i, x_init, x_final, y_init, y_final)):
+def returnButton(mouse):
+  x_init = 1533
+  x_final = 363
+  y_init = 25
+  y_final = 126
+  if (click(mouse, x_init, x_final, y_init, y_final)):
     return False
   else:
     return True
 
-
-def Creditos(mouse, screen_i):
-  x_init = 439
-  x_final = 1010
-  y_init = 680
-  y_final = 804
-  if (click(mouse, screen_i, x_init, x_final, y_init, y_final)):
-    print("creditos")

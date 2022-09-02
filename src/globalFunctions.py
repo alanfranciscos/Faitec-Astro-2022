@@ -1,9 +1,19 @@
-def click(mouse, screen_i, x_init, x_final, y_init, y_final):
-  image_size_x = screen_i[0][0]
-  image_size_y = screen_i[0][1]
-  return (image_size_x*x_init/screen_i[1][0])<= mouse[0] <= (image_size_x*x_final/screen_i[1][0]) and (image_size_y*y_init/screen_i[1][1]) <= mouse[1] <=(image_size_y*y_final/screen_i[1][1])
+import pygame
 
+def click(mouse, x_init, widht, y_init, height):
+  x_final = x_init + widht
+  y_final = y_init + height
+  return (xValue(x_init))<= mouse[0] <= (xValue(x_final)) and (yValue(y_init)) <= mouse[1] <=(yValue(y_final))
 
 def text(screen, font, text, position):
   text = font.render(text, True ,(250,250,250))
   screen.blit(text, (position[0], position[1]))
+
+## RegraDeTres:
+def xValue(value):
+  info_screen = pygame.display.Info()
+  return (info_screen.current_w*value)/1920
+
+def yValue(value):
+  info_screen = pygame.display.Info()
+  return (info_screen.current_h*value)/1080

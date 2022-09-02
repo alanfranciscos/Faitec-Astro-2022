@@ -12,12 +12,11 @@ font = pygame.font.SysFont("arial", 30)
 info_screen = pygame.display.Info()
 imx = info_screen.current_w
 imy = info_screen.current_h
-screen_i = [imx, imy],[1440,1024]
+screen_i = [imx, imy],[1920,1080]
 
 window_width = pygame.display.Info().current_w
 window_height = pygame.display.Info().current_h
 size = (window_width, window_height)
-# screen = pygame.display.set_mode((size), pygame.FULLSCREEN)
 screen = pygame.display.set_mode((size))
 
 while True:
@@ -30,7 +29,7 @@ while True:
           pauseScreen(screen, font, screen_i)
     if event.type == pygame.MOUSEBUTTONDOWN:
       mouse = event.pos
-      exit_game(mouse, screen_i)
+      exit_game(mouse)
       init_game(screen, mouse, font, screen_i)
       pauseMenu(screen, mouse, font, screen_i)
 

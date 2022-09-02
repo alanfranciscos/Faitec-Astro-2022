@@ -1,11 +1,21 @@
 import pygame
+from Game.ShotGame.planets import calcShowPlanets, drawPlanets
 # from Game.shotGame import shotGame
 from Pause.pause import pauseScreen
+
 
 def shotGame(screen, font, screen_i):
   cursor =[0,0]
   mouse_ant = [0,0]
   mouse = [0,0]
+  class PlanetsCoordinates:
+    terraCoordinates = [0,0]
+    luaCoordinates = [0,0]
+    saturnoCoordinates = [0,0]
+    solCoordinates = [0,0]
+
+  calcShowPlanets(screen_i, PlanetsCoordinates)
+
   pygame.mouse.set_visible(False)
   while True:
     insertBackground(screen, screen_i)
@@ -18,19 +28,24 @@ def shotGame(screen, font, screen_i):
           pygame.mouse.set_visible(False)
       if event.type == pygame.MOUSEMOTION:
         mouse = event.pos
-    drawPlanets(screen)
-    cursor = drawMouse(screen,mouse, mouse_ant, cursor)
+      if event.type == pygame.MOUSEBUTTONDOWN:
+        calcShowPlanets(screen_i, PlanetsCoordinates)
+
+    drawPlanets(screen, PlanetsCoordinates)
+    cursor = drawMouse(screen,mouse, mouse_ant, cursor, screen_i)
     mouse_ant = mouse
     pygame.display.flip()
-    pygame.time.delay(10)
+    # pygame.time.delay(100)
 
 ##############################################################################
 
 
-def drawMouse(screen, mouse, mouse_ant, cursor):
+def drawMouse(screen, mouse, mouse_ant, cursor, screen_i):
   dif = [mouse[0] - mouse_ant[0], mouse[1] - mouse_ant[1]]
-  if(cursor[0]+dif[0] >= 1100):
-    cursor = [1100, cursor[1]+dif[1]]
+  tamanho = 1508
+  width = (screen_i[0][0]*tamanho)/screen_i[1][0]
+  if(cursor[0]+dif[0] >= (width)):
+    cursor = [width, cursor[1]+dif[1]]
   elif (cursor[0]+dif[0] <=0):
      cursor = [0, cursor[1]+dif[1]]
   else:
@@ -40,24 +55,7 @@ def drawMouse(screen, mouse, mouse_ant, cursor):
   return cursor
 
 def insertBackground(screen, screen_i):
-    image_path = "src\Game\ShotGame\Images\ShotGame\Background.png"
-    background_image = pygame.image.load(image_path).convert()
-    background_image = pygame.transform.scale(background_image, (screen_i[0][0], screen_i[0][1]))
-    screen.blit(background_image,[0,0])
-
-def drawPlanets(screen):
-  terra_path = "src\Game\ShotGame\Images\ShotGame\Terra.png"
-  lua_path = "src\Game\ShotGame\Images\ShotGame\lua.png"
-  saturno_path = "src\Game\ShotGame\Images\ShotGame\saturno.png"
-  sol_path = "src\Game\ShotGame\Images\ShotGame\sol.png"
-  terra =  pygame.image.load(terra_path).convert_alpha()
-  screen.blit(terra,[0,0])
-
-  lua =  pygame.image.load(lua_path).convert_alpha()
-  screen.blit(lua,[0,0])
-
-  saturno =  pygame.image.load(saturno_path).convert_alpha()
-  screen.blit(saturno,[0,0])
-
-  sol =  pygame.image.load(sol_path).convert_alpha()
-  screen.blit(sol,[0,0])
+  image_path = "src\Game\ShotGame\Images\ShotGame\Background.png"
+  background_image = pygame.image.load(image_path).convert()
+  background_image = pygame.transform.scale(background_image, (screen_i[0][0], screen_i[0][1]))
+  screen.blit(background_image,[0,0])
