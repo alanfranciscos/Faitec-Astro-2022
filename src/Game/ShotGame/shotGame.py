@@ -8,13 +8,14 @@ def shotGame(screen, font, screen_i):
   cursor =[0,0]
   mouse_ant = [0,0]
   mouse = [0,0]
-  class PlanetsCoordinates:
-    terraCoordinates = [0,0]
-    luaCoordinates = [0,0]
-    saturnoCoordinates = [0,0]
-    solCoordinates = [0,0]
 
-  calcShowPlanets(screen_i, PlanetsCoordinates)
+  terraCoordinates = [-500,-500]
+  luaCoordinates = [-500,-500]
+  saturnoCoordinates = [-500,-500]
+  solCoordinates = [-500,-500]
+  allCoordinates =  [terraCoordinates, luaCoordinates, saturnoCoordinates, solCoordinates]
+
+  calcShowPlanets(allCoordinates)
 
   pygame.mouse.set_visible(False)
   while True:
@@ -29,9 +30,9 @@ def shotGame(screen, font, screen_i):
       if event.type == pygame.MOUSEMOTION:
         mouse = event.pos
       if event.type == pygame.MOUSEBUTTONDOWN:
-        calcShowPlanets(screen_i, PlanetsCoordinates)
+        calcShowPlanets(allCoordinates)
 
-    drawPlanets(screen, PlanetsCoordinates)
+    drawPlanets(screen, allCoordinates)
     cursor = drawMouse(screen,mouse, mouse_ant, cursor, screen_i)
     mouse_ant = mouse
     pygame.display.flip()

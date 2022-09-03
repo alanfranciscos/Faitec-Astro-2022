@@ -17,8 +17,6 @@ def loading_game(screen: any, screen_i):
       if event.type == pygame.MOUSEBUTTONDOWN:
         mouse = event.pos
         button = buttonPlay(mouse)
-        print (mouse)
-
 
   while i<4:
     for event in pygame.event.get():
