@@ -1,5 +1,5 @@
 import pygame
-from Game.ShotGame.planets import calcShowPlanets, drawPlanets
+from Game.ShotGame.planets import calcShowPlanets, clickInPlanets, drawMouse, drawPlanets
 # from Game.shotGame import shotGame
 from Pause.pause import pauseScreen
 
@@ -30,7 +30,9 @@ def shotGame(screen, font, screen_i):
       if event.type == pygame.MOUSEMOTION:
         mouse = event.pos
       if event.type == pygame.MOUSEBUTTONDOWN:
-        calcShowPlanets(allCoordinates)
+        clickInPlanets(allCoordinates, mouse)
+        # if(clickInPlanets(allCoordinates, mouse)):
+          # calcShowPlanets(allCoordinates)
 
     drawPlanets(screen, allCoordinates)
     cursor = drawMouse(screen,mouse, mouse_ant, cursor, screen_i)
@@ -40,20 +42,6 @@ def shotGame(screen, font, screen_i):
 
 ##############################################################################
 
-
-def drawMouse(screen, mouse, mouse_ant, cursor, screen_i):
-  dif = [mouse[0] - mouse_ant[0], mouse[1] - mouse_ant[1]]
-  tamanho = 1508
-  width = (screen_i[0][0]*tamanho)/screen_i[1][0]
-  if(cursor[0]+dif[0] >= (width)):
-    cursor = [width, cursor[1]+dif[1]]
-  elif (cursor[0]+dif[0] <=0):
-     cursor = [0, cursor[1]+dif[1]]
-  else:
-    cursor = [cursor[0]+dif[0], cursor[1]+dif[1]]
-  color = (255 , 0, 0)
-  pygame.draw.circle(screen, color, cursor , 10, 10)
-  return cursor
 
 def insertBackground(screen, screen_i):
   image_path = "src\Game\ShotGame\Images\ShotGame\Background.png"

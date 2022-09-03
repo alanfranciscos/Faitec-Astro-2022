@@ -38,8 +38,6 @@ def calcShowPlanets(allCoordinates):
 def VerifyLocation(all, screen, i):
     igual = True
     while(igual):
-      print(igual)
-      print(i)
       if(i == 0):
         atual = randomPlanets(screen)
         all[i] = atual
@@ -70,36 +68,8 @@ def VerifyLocation(all, screen, i):
           if(igual == False):
             igual = compareLocalPlanets(atual,spaceSat)
 
-
-
-
-
-
-
-def printAtual(i):
-  if (i == 0):
-    return ("terra")
-  if (i == 1):
-    return ("luaCoordinates")
-  if (i == 2):
-    return ("saturnoCoordinates")
-  if (i == 3):
-    return ("solCoordinates")
-
-
-
-# def verifyEqual(atual, all):
-#   igualQualquer = True
-#   j = 0
-#   while j < len(all):
-#     igualQualquer = compareLocalPlanets(atual, getSpacePlanet(all[j]))
-#     if(igualQualquer):
-#       break
-#   return igualQualquer
-
 def compareLocalPlanets(random, space):
   atual = getSpacePlanet(random)
-  print("atual",atual)
 
   atualXRandomEqual = atual[0][1] >= space[0][0] or atual[0][0] <= space[0][1]
   atualyRandomEqual =  atual[1][0] <= space[1][1] and atual[1][1] >= space[1][0]
@@ -107,10 +77,39 @@ def compareLocalPlanets(random, space):
   return igual
 
 def getSpacePlanet(planet):
-  value = [[planet[0]-int(xValue(50)), planet[0] + int(xValue(50))],
-          [planet[1]-int(yValue(50)), planet[1] + int(yValue(50))]]
+  value = [[planet[0], planet[0] + (100)],
+          [planet[1], planet[1] + ((100))]]
   return value
 
 def randomPlanets(screen):
   return [random.randint(0, screen[0]-int(xValue(100))), random.randint(0, screen[1]-int(yValue(100)))]
 
+
+def drawMouse(screen, mouse, mouse_ant, cursor, screen_i):
+  dif = [mouse[0] - mouse_ant[0], mouse[1] - mouse_ant[1]]
+  tamanho = 1508
+  width = (screen_i[0][0]*tamanho)/screen_i[1][0]
+  if(cursor[0]+dif[0] >= (width)):
+    cursor = [width, cursor[1]+dif[1]]
+  elif (cursor[0]+dif[0] <=0):
+     cursor = [0, cursor[1]+dif[1]]
+  else:
+    cursor = [cursor[0]+dif[0], cursor[1]+dif[1]]
+  color = (255 , 0, 0)
+  pygame.draw.circle(screen, color, cursor , 10, 10)
+  return cursor
+
+def clickInPlanets(allCoordinates, mouse):
+  i = 0
+  clique = False
+  while( i <= 3):
+    atual = getSpacePlanet(allCoordinates[i])
+    atualXRandomEqual = mouse[0] >= atual[0][0] and mouse[0] <= atual[0][1]
+    atualyRandomEqual =  mouse[1] >= atual[1][0] and mouse[1] <= atual[1][1]
+    print(atualXRandomEqual,atualyRandomEqual )
+    print(mouse,atual )
+    if(not clique):
+      clique = atualXRandomEqual and atualyRandomEqual
+    i=i+1
+  print("-------------------------")
+  return clique
