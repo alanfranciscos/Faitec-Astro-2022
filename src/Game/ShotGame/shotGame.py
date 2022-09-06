@@ -68,14 +68,9 @@ def insertBackground(screen, screen_i):
   screen.blit(background_image,[0,0])
 
 def verifyResponse(correta, response):
-  print(correta)
-  print(response)
-  print("---")
   if(correta == response):
-    print("1")
     return 1
   else:
-    print("0")
     return 0
 
 def showResponse(screen, pontuacao):
