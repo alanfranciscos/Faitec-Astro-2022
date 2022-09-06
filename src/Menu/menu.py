@@ -10,7 +10,7 @@ def menu_init(screen:any, screen_i):
   pygame.display.flip()
   # for event in pygame.event.get():
   #   if event.type == pygame.MOUSEMOTION:
-  #     print(event.pos)
+  #     (event.pos)
 
 def exit_game(mouse):
   x_init = 563

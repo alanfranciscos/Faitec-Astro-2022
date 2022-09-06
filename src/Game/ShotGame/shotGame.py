@@ -1,7 +1,9 @@
 import pygame
-from Game.ShotGame.planets import calcShowPlanets, clickInPlanets, drawMouse, drawPlanets
+from Game.ShotGame.planets import calcShowPlanets, clickInPlanets, drawMouse, drawPlanets, getPlanetClickmouse
+from Game.SideBar.sidebar import setQuestion, showQuestion
 # from Game.shotGame import shotGame
 from Pause.pause import pauseScreen
+from globalFunctions import text
 
 
 def shotGame(screen, font, screen_i):
@@ -15,7 +17,18 @@ def shotGame(screen, font, screen_i):
   solCoordinates = [-500,-500]
   allCoordinates =  [terraCoordinates, luaCoordinates, saturnoCoordinates, solCoordinates]
 
+  pontuacao = 0
+  correta = 0
+  response = 0
+
   calcShowPlanets(allCoordinates)
+
+  x = [0,0]
+  res =[0,0,0,0]
+  difficult = 0
+  correta = setQuestion(x ,res, difficult)
+
+  pontuacao = 0
 
   pygame.mouse.set_visible(False)
   while True:
@@ -30,11 +43,16 @@ def shotGame(screen, font, screen_i):
       if event.type == pygame.MOUSEMOTION:
         mouse = event.pos
       if event.type == pygame.MOUSEBUTTONDOWN:
-        clickInPlanets(allCoordinates, mouse)
-        # if(clickInPlanets(allCoordinates, mouse)):
-          # calcShowPlanets(allCoordinates)
+        if(clickInPlanets(allCoordinates, cursor)):
+          response = getPlanetClickmouse(allCoordinates, cursor)
+          pontuacao = pontuacao + verifyResponse(correta, response)
+          correta = setQuestion(x ,res, difficult)
+          calcShowPlanets(allCoordinates)
+          # question(x, screen)
 
+    showResponse(screen,pontuacao)
     drawPlanets(screen, allCoordinates)
+    showQuestion(x, res,  screen)
     cursor = drawMouse(screen,mouse, mouse_ant, cursor, screen_i)
     mouse_ant = mouse
     pygame.display.flip()
@@ -48,3 +66,19 @@ def insertBackground(screen, screen_i):
   background_image = pygame.image.load(image_path).convert()
   background_image = pygame.transform.scale(background_image, (screen_i[0][0], screen_i[0][1]))
   screen.blit(background_image,[0,0])
+
+def verifyResponse(correta, response):
+  print(correta)
+  print(response)
+  print("---")
+  if(correta == response):
+    print("1")
+    return 1
+  else:
+    print("0")
+    return 0
+
+def showResponse(screen, pontuacao):
+  font = pygame.font.SysFont("arial", 60)
+  pontuacaoPosition = [1740,12]
+  text(screen, font, str(pontuacao), pontuacaoPosition)
