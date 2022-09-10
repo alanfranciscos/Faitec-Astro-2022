@@ -28,7 +28,7 @@ def setQuestion(x , res, difficult):
 
 def showQuestion(x, res, screen):
   font = pygame.font.SysFont("arial", 60)
-  position = [1609, 364]
+  position = [1628, 409]
   question = str(x[0]) + "+" + str(x[1])
   text(screen, font, question, position)
 
@@ -46,3 +46,12 @@ def getAnswer(x, difficult):
   if(difficult == 0):
     return x[0]+x[1]
 
+def showResponse(screen, pontuacao):
+  font = pygame.font.SysFont("arial", 60)
+  pontuacaoPosition = [1758,100]
+  text(screen, font, str(pontuacao), pontuacaoPosition)
+
+def showTime(screen, time):
+  font = pygame.font.SysFont("arial", 60)
+  pontuacaoPosition = [1758,182]
+  text(screen, font, str(time), pontuacaoPosition)
