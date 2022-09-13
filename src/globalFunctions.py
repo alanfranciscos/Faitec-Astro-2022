@@ -30,3 +30,12 @@ def verifyHandleTime(anterior, atual):
     if (anterior != atual):
         igual = True
     return igual
+
+
+def drawMouseCursor(screen, mouse):
+    image_path = "src/Images/Cursor.png"
+    selectImage = pygame.image.load(image_path).convert_alpha()
+    selectImage = pygame.transform.scale(selectImage,
+                                         (xValue(100), yValue(100)))
+    mouse = [int(xValue(mouse[0])-xValue(20)), int(yValue(mouse[1])-yValue(20))]
+    screen.blit(selectImage, mouse)
