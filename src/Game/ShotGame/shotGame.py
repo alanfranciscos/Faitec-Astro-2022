@@ -3,11 +3,11 @@ import datetime
 from Game.ShotGame.planets import calcShowPlanets, clickInPlanets, drawMouse, drawPlanets, getPlanetClickmouse
 from Game.SideBar.sidebar import setQuestion, showQuestion, showResponse, showTime
 # from Game.shotGame import shotGame
-from Pause.pause import pauseScreen
+from Config.config import pauseScreen
 from globalFunctions import verifyHandleTime
 
 
-def shotGame(screen, font, screen_i):
+def shotGame(screen, font, screen_i, config):
     cursor = [0, 0]
     mouse_ant = [0, 0]
     mouse = [0, 0]
@@ -42,9 +42,9 @@ def shotGame(screen, font, screen_i):
 
     time = 60
 
-    perdeu = False
+    lose = False
 
-    while not perdeu:
+    while not lose:
 
         timer = datetime.datetime.now()
         timeAtual = timer.second
@@ -61,7 +61,7 @@ def shotGame(screen, font, screen_i):
                 pygame.quit()
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_ESCAPE:
-                    pauseScreen(screen, font, screen_i)
+                    pauseScreen(screen, screen_i, config)
                     pygame.mouse.set_visible(False)
             if event.type == pygame.MOUSEMOTION:
                 mouse = event.pos

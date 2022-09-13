@@ -5,9 +5,9 @@ from globalFunctions import text
 
 def setQuestion(x , res, difficult):
   resposta = 0
-  if(difficult ==0 ):
-    x[0] = random.randint(0, 10)
-    x[1] = random.randint(0, 10)
+  if(difficult == 0 ):
+    x[0] = random.randint(0, 100)
+    x[1] = random.randint(0, 100)
     correta = random.randint(0, 3)
     resposta = x[0]+x[1]
     i = 0
